@@ -11,6 +11,7 @@ import org.springframework.cloud.service.common.MysqlServiceInfo;
 import org.springframework.cloud.service.common.OracleServiceInfo;
 import org.springframework.cloud.service.common.PostgresqlServiceInfo;
 import org.springframework.cloud.service.common.RedisServiceInfo;
+import org.springframework.cloud.service.common.SqlServerInfo;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.util.StringUtils;
@@ -24,7 +25,7 @@ public class SpringApplicationContextInitializer implements ApplicationContextIn
 
     private static final Map<Class<? extends ServiceInfo>, String> serviceTypeToProfileName =
             new HashMap<Class<? extends ServiceInfo>, String>();
-    private static final List<String> validLocalProfiles = Arrays.asList("mysql", "postgres", "mongodb", "redis");
+    private static final List<String> validLocalProfiles = Arrays.asList("mysql", "postgres", "mongodb", "redis", "sqlserver");
 
     public static final String IN_MEMORY_PROFILE = "in-memory";
 
@@ -34,6 +35,7 @@ public class SpringApplicationContextInitializer implements ApplicationContextIn
         serviceTypeToProfileName.put(MysqlServiceInfo.class, "mysql");
         serviceTypeToProfileName.put(RedisServiceInfo.class, "redis");
         serviceTypeToProfileName.put(OracleServiceInfo.class, "oracle");
+        serviceTypeToProfileName.put(SqlServerInfo.class, "sqlserver");
     }
 
     @Override
