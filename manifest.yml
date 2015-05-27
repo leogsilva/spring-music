@@ -5,4 +5,8 @@ applications:
   instances: 1
   host: spring-ms-${random-word}
   path: build/libs/spring-music.war
+  services:
+  - sqlserver
+  env:
+    SPRING_PROFILES_ACTIVE: sqlserver
 

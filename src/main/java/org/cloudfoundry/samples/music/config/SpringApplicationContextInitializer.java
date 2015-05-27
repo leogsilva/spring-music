@@ -5,12 +5,14 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.cloud.Cloud;
 import org.springframework.cloud.CloudException;
 import org.springframework.cloud.CloudFactory;
+import org.springframework.cloud.service.ServiceConnectorCreator;
 import org.springframework.cloud.service.ServiceInfo;
 import org.springframework.cloud.service.common.MongoServiceInfo;
 import org.springframework.cloud.service.common.MysqlServiceInfo;
 import org.springframework.cloud.service.common.OracleServiceInfo;
 import org.springframework.cloud.service.common.PostgresqlServiceInfo;
 import org.springframework.cloud.service.common.RedisServiceInfo;
+import org.springframework.cloud.service.common.SqlServerDataSourceCreator;
 import org.springframework.cloud.service.common.SqlServerInfo;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -41,6 +43,7 @@ public class SpringApplicationContextInitializer implements ApplicationContextIn
     @Override
     public void initialize(AnnotationConfigWebApplicationContext applicationContext) {
         Cloud cloud = getCloud();
+        cloud.registerServiceConnectorCreator(new SqlServerDataSourceCreator());
 
         ConfigurableEnvironment appEnvironment = applicationContext.getEnvironment();
 
